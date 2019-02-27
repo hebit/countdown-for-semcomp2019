@@ -15,7 +15,6 @@ function flip(item, i, j = 1){
 		item[j].style.opacity = 0;
 		item[j].style.boxShadow = "0 2px 10px rgba(0,0,0,0.0)";
 	}
-	
 }
 
 function reset(item, i){

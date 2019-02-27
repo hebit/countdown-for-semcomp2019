@@ -36,7 +36,6 @@ div.count-block{
 	grid-row: 2/2;
 	grid-template-rows: 1fr 1fr;
 	justify-content: stretch;
-	margin: 0 4px;
 	perspective: 300px;
 	position: relative;
 	text-shadow: 0 4px 10px black;

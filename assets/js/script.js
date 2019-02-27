@@ -10,18 +10,20 @@ const secondsBlock = document.querySelector('.seconds');
 
 function flip(item, i, j = 1){
 	for (j = j; j >= i; j--) {
-		item[j].style.transition = "transform 0.8s cubic-bezier(.77,0,.18,1) 0s, opacity 0.3s ease 0.4s";
+		item[j].style.transition = "transform 0.8s cubic-bezier(.77,0,.18,1) 0s, opacity 0.3s ease 0.4s, box-shadow 0.8s ease 0s";
 		item[j].style.transform = "rotateX(-180deg)";
-		item[j].style.opacity = 0;	
+		item[j].style.opacity = 0;
+		item[j].style.boxShadow = "0 2px 10px rgba(0,0,0,0.0)";
 	}
 	
 }
 
 function reset(item, i){
 	for (var j = 1 ; j >= i; j--) {
-		item[j].style.transition = "none";
+		item[j].style.transition = "box-shadow 0.2s ease 0s";
 		item[j].style.transform = "rotateX(0)";
 		item[j].style.opacity = 1;
+		item[j].style.boxShadow = "0 2px 10px rgba(0,0,0,0.6)";
 	}
 }
 
@@ -38,27 +40,28 @@ function flipByTime(target, time){
 	
 	setTimeout(
 		() =>{
-			flipAbs.innerHTML = "";
-			setTimeout(
-				() => {
-					reset(flipAbs, i);
+			if(i != 2){
+				setTimeout(
+					() => {
+						reset(flipAbs, i);
 
-					let pos = 0;
-					Array.from(flipAbs).forEach(
-						(item)=> {
-							digit = pos == 0 ? parseInt(time/10) : time % 10;
-							item.innerHTML = "<span>" + digit + "</span>";
-							pos++;
-						}
+						let pos = 0;
+						Array.from(flipAbs).forEach(
+							(item)=> {
+								digit = pos == 0 ? parseInt(time/10) : time % 10;
+								item.innerHTML = "<span>" + digit + "</span>";
+								pos++;
+							}
 
-					);
-				}
-			,450);
-	}
+						);
+					}
+				,450);
+			}
+		}
 	,400);
 	setTimeout(
 		() => {
-			fillStaticShapes(target, time)
+			fillStaticShapes(target, time, i)
 		}
 	,400)
 }
@@ -94,19 +97,19 @@ function getFormatedTime(timeLeft){
 	return timeLeft;
 }
 
-function fillStaticShapes(target,time){
+function fillStaticShapes(target,time,i){
 	const staticShapes = target.querySelectorAll('.flip-shape:not(.abs)');
-
-	Array.from(staticShapes)[0].innerHTML = "<span>" + parseInt(time/10) + "</span>";
-	Array.from(staticShapes)[1].innerHTML = "<span>" + parseInt(time/10) + "</span>";
-	Array.from(staticShapes)[2].innerHTML = "<span>" + time%10 + "</span>";
-	Array.from(staticShapes)[3].innerHTML = "<span>" + time%10 + "</span>";
-
+	const digits = [parseInt(time/10), time%10];
+	
+	for(var j  = 1; j >= i; j--){
+		Array.from(staticShapes)[j * 2].innerHTML = "<span>" + digits[j] + "</span>";
+		Array.from(staticShapes)[j * 2 + 1].innerHTML = "<span>" + digits[j] + "</span>";
+	}
 }
 
 function finishCount(count){
 	const countBlocks = document.querySelectorAll('.count-block');
-	let msg = ['S','E','M','C','O','M','P','!'];
+	let msg = ['É','H','O','J','E','!','!','!'];
 	let pos = 0;
 
 	const flipAbs = document.querySelectorAll('.abs');

@@ -68,7 +68,7 @@ function flipByTime(target, time){
 
 
 function updateDataStructure(){
-	var semcompDate = new Date("Out 21, 2019, 14:00:00").getTime();
+	var semcompDate = new Date("October 21, 2019, 14:00:00").getTime();
 	var now = new Date().getTime();
 	var timeLeft = semcompDate - now;
 	timeLeft = getFormatedTime(timeLeft);
@@ -92,7 +92,7 @@ function getFormatedTime(timeLeft){
 		"minutes": Math.floor((timeLeft % hourSet) / (minuteSet)),
 		"seconds": Math.floor((timeLeft % minuteSet) / (secondSet))
 	}
-	// console.log(timeLeft);
+	console.log(timeLeft);
 	return timeLeft;
 }
 

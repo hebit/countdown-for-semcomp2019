@@ -65,12 +65,13 @@ function flipByTime(target, time){
 	,400)
 }
 
-
+const finishDate = new Date(new Date().getTime() + 65 * 60000).getTime();
 
 function updateDataStructure(){
-	var semcompDate = new Date("October 21, 2019, 14:00:00").getTime();
+	// var semcompDate = new Date("October 21, 2019, 14:00:00").getTime();
 	var now = new Date().getTime();
-	var timeLeft = semcompDate - now;
+	
+	var timeLeft = finishDate - now;
 	timeLeft = getFormatedTime(timeLeft);
 	
 	days = timeLeft.days;
